@@ -1,0 +1,12 @@
+# The following lines are desirable for IPv4 capable hosts
+127.0.0.1 localhost.localdomain localhost
+127.0.0.1 localhost4.localdomain4 localhost4
+
+# The following lines are desirable for IPv6 capable hosts
+::1 localhost.localdomain localhost
+::1 localhost6.localdomain6 localhost6
+
+# OKD entries
+78.46.195.145 master-01.okd.devsupernova.io master-01
+78.46.183.5 infra-01.okd.devsupernova.io infra-01
+78.46.189.57 compute-01.okd.devsupernova.io compute-01

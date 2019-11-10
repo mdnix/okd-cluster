@@ -1,0 +1,75 @@
+---
+- name: Run pre installation tasks for OKD cluster
+  #become: true
+  #become_method: su
+  hosts: all
+
+  tasks:
+
+    - name: Install epel-release
+      yum:
+        name: epel-release
+
+    - name: Install packages
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - wget
+          - git 
+          - net-tools 
+          - docker-1.13.1
+          - bind-utils 
+          - dnf-utils
+          - iptables-services
+          - bridge-utils 
+          - bash-completion
+          - kexec-tools 
+          - sos 
+          - psacct 
+          - openssl-devel 
+          - httpd-tools 
+
+    - name: Disable epel-release repo by default
+      command: sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+
+    - name: Set SELinux enforcing
+      command: sed -i s/^SELINUX=.*$/SELINUX=enforcing/ /etc/selinux/config
+
+    - name: Start and enable NetworkManager
+      service:
+        name: NetworkManager
+        state: started
+        enabled: yes
+
+    - name: Start and enable docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Install ansible packages
+      yum:
+        name: "{{ packages }}"
+        enablerepo: epel
+        state: present
+      vars:
+        packages:
+          - ansible
+          - pyOpenSSL
+
+    - name: Set hostname
+      command: hostnamectl set-hostname "{{ inventory_hostname }}"
+
+    - name: Add all nodes to etc hosts
+      copy: 
+        src: hosts
+        dest: /etc/hosts
+
+    - name: Upgrade all packages
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Reboot servers
+      reboot:
