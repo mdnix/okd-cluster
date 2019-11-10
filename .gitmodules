@@ -1,0 +1,3 @@
+[submodule "install-cluster"]
+	path = install-cluster
+	url = https://github.com/openshift/openshift-ansible.git
