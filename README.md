@@ -2,7 +2,7 @@
 
 ## Clone the official OpenShift playbooks
 
-https://github.com/openshift/openshift-ansible.git -b release-3.11
+```git clone https://github.com/openshift/openshift-ansible.git -b release-3.11```
 
 ## Modify the invenotry to suit your needs
 
@@ -12,4 +12,13 @@ The example file installs 1 master, 1 infra-node and 1 compute node
 
 ## Run the pre-tasks
 
+```ansible-playbook pre-tasks.yaml -i inventory/hosts.devsupernova```
+
+## Run the OpenShift prerequisites playbook
+
+```ansible-playbook prerequisites.yml -i inventory/hosts.devsupernova```
+
+## Deploy the cluster
+
+```ansible-playbook deploy_cluster.yml -i inventory/hosts.devsupernova```
 
