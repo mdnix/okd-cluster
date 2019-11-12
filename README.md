@@ -4,7 +4,7 @@
 
 ```git clone https://github.com/openshift/openshift-ansible.git -b release-3.11```
 
-## Modify the invenotry to suit your needs
+## Modify the inventory to suit your needs
 
 Change the IP addresses inside the [master], [etcd] and [nodes] groups.
 You can add or remove nodes from the inventory, depending on how big your cluster should be.
