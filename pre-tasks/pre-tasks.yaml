@@ -35,12 +35,6 @@
     - name: Set SELinux enforcing
       command: sed -i s/^SELINUX=.*$/SELINUX=enforcing/ /etc/selinux/config
 
-    - name: Start and enable NetworkManager
-      service:
-        name: NetworkManager
-        state: started
-        enabled: yes
-
     - name: Start and enable docker
       service:
         name: docker
