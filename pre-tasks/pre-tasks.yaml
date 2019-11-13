@@ -20,7 +20,6 @@
           - net-tools 
           - docker-1.13.1
           - bind-utils 
-          - dnf-utils
           - iptables-services
           - bridge-utils 
           - bash-completion
