@@ -4,15 +4,21 @@ nodes
 etcd
 
 [masters]
-116.203.130.241 openshift_ip=116.203.130.241 openshift_schedulable=true
+master-01.okd.devsupernova.io ansible_host=78.47.183.116 openshift_ip=78.47.183.116 openshift_schedulable=true
+master-02.okd.devsupernova.io ansible_host=78.47.183.114 openshift_ip=78.47.183.114 openshift_schedulable=true
+master-03.okd.devsupernova.io ansible_host=78.47.183.115 openshift_ip=78.47.183.115 openshift_schedulable=true
 
 [etcd]
-116.203.130.241 openshift_ip=116.203.130.241
+master-01.okd.devsupernova.io ansible_host=78.47.183.116 openshift_ip=78.47.183.116
+master-02.okd.devsupernova.io ansible_host=78.47.183.114 openshift_ip=78.47.183.114
+master-03.okd.devsupernova.io ansible_host=78.47.183.115 openshift_ip=78.47.183.115
 
 [nodes]
-116.203.130.241 openshift_ip=116.203.130.241 openshift_schedulable=true openshift_node_group_name="node-config-master"
-116.203.141.30 openshift_ip=116.203.141.30 openshift_schedulable=true openshift_node_group_name="node-config-infra"
-116.203.131.128 openshift_ip=116.203.131.128 openshift_schedulable=true openshift_node_group_name="node-config-compute"
+master-01.okd.devsupernova.io ansible_host=78.47.183.116 openshift_ip=78.47.183.116 openshift_schedulable=true openshift_node_group_name="node-config-master"
+master-02.okd.devsupernova.io ansible_host=78.47.183.114 openshift_ip=78.47.183.114 openshift_schedulable=true openshift_node_group_name="node-config-master"
+master-03.okd.devsupernova.io ansible_host=78.47.183.115 openshift_ip=78.47.183.115 openshift_schedulable=true openshift_node_group_name="node-config-master"
+infra-01.okd.devsupernova.io ansible_host=78.47.183.113 openshift_ip=78.47.183.113 openshift_schedulable=true openshift_node_group_name="node-config-infra"
+compute-01.okd.devsupernova.io ansible_host=78.47.183.112 openshift_ip=78.47.183.112 openshift_schedulable=true openshift_node_group_name="node-config-compute"
 
 [OSEv3:vars]
 openshift_additional_repos=[{'id': 'centos-paas', 'name': 'centos-paas', 'baseurl' :'https://buildlogs.centos.org/centos/7/paas/x86_64/openshift-origin311', 'gpgcheck' :'0', 'enabled' :'1'}]
@@ -41,7 +47,7 @@ openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
 logging_elasticsearch_rollout_override=false
 osm_use_cockpit=true
 
-openshift_metrics_install_metrics=true
+openshift_metrics_install_metrics=True
 openshift_logging_install_logging=false
 
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
